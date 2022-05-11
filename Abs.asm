@@ -2,7 +2,7 @@
     D=M //Store R1 in D
 
     @NEGATIVE
-    D;JLT //D < 0 got to 9
+    D;JLT    //D < 0 got to 9
 
     @R0
     M=D //Return D
