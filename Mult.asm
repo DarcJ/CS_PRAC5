@@ -13,16 +13,23 @@
 //If second number equal to zero --> End program 
 //Else keep looping.
 
-@R1
+
+@R2 //Temp is equal to second value -1
 D=M
-@R2
-A=M
+@temp
+M=D
 (LOOP)
+    @R1
+    D=M
+    @R0
     M=M+D
-    A=A-1
+    @temp
+    D=M-1
+    M=D
     @END
-    A;JLE
+    D;JEQ
     @LOOP
+    0;JMP
 (END)
     @END
     0;JMP
