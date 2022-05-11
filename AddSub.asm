@@ -7,5 +7,5 @@ D=M
 D=D+M
 @R3
 D=D-M
-@0
+@R0
 M=D
