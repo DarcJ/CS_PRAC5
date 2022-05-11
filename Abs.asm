@@ -1,15 +1,13 @@
-// Calculates the absolute value of R1 and stores the result in R0.
-// (R0, R1 refer to RAM[0], and RAM[1], respectively.)
 @R1
-D=M
+D=M //Store R1 in D
 @9
-D;JGL
+D;JGL //D < 0 got to 9
 @R0
-M=D
+M=D //Return D
 @11
-0;JMP
+0;JMP //End Program
 @R0
-M = -D
+M=-D
 @11
 0;JMP
 
