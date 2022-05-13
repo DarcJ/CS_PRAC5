@@ -14,7 +14,7 @@
 //Else keep looping.
 
 
-@R2 //Temp is equal to second value -1
+@R2
 D=M
 @temp
 M=D
