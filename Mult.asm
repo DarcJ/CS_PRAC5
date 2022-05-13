@@ -2,14 +2,6 @@
 M=0
 @R1
 D=M
-@LOOP
-D;JGT
-@R2
-D=M
-@LOOP
-D;JGT
-@R1
-D=M
 @NEGLOOP
 D;JLT
 @R2
