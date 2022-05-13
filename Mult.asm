@@ -1,34 +1,94 @@
-// This file is based on part of www.nand2tetris.org
-// and the book "The Elements of Computing Systems"
-// by Nisan and Schocken, MIT Press.
-// File name: Mult.asm
-
-// Multiplies R1 and R2 and stores the result in R0.
-// (R0, R1, R2 refer to RAM[0], RAM[1], and RAM[2], respectively.)
-
-//Get First number
-//Add to itself
-//Reduce second number by 1
-//Check if second number is equal to zero
-//If second number equal to zero --> End program 
-//Else keep looping.
-
-
+@Indicator
+M=0
+@R1
+D=M
+@NEGLOOP
+D;JLT
 @R2
 D=M
-@temp
-M=D
+@NEGATE
+D;JLT
+@R1
+D=M
+@ZEROLOOP
+D;JEQ
+@R2
+D=M
+@ZEROLOOP
+D;JEQ
+@LOOP
+0;JMP
 (LOOP)
     @R1
     D=M
     @R0
     M=M+D
-    @temp
+    @R2
     D=M-1
     M=D
-    @END
+    @SIGNCHECK
     D;JEQ
     @LOOP
+    0;JMP
+ (NEGLOOP)
+    @Indicator
+    M=1
+    @R2
+    D=M
+    @DOUBLENEG
+    D;JLT
+    @0
+    D=0
+    @R1
+    D=D-M
+    M=D
+    @LOOP
+    0;JMP
+(NEGATE) //Change sign of R2 but set status to 1 to indicate a necessary sign change back to neg
+    @Indicator
+    M=1
+    @0
+    D=0
+    @R2
+    D=D-M
+    M=D
+    @LOOP
+    0;JMP
+(DOUBLENEG)
+    @Indicator
+    M=0
+    @0
+    D=0
+    @R2
+    D=D-M  //Converting to R2 positive
+    M=D
+    @0
+    D=0
+    @R1 //Converting R1 Pos
+    D=D-M
+    M=D
+    @LOOP
+    0;JMP
+(ZEROLOOP)
+    @R0
+    M=0
+    @END  
+    0;JMP
+(SIGNCHECK)
+    @Indicator
+    D=M
+    @SIGNCHANGE
+    D;JGT
+    @END
+    0;JMP
+(SIGNCHANGE)
+    @0
+    D=0
+    @R0 //Change sign of R0 to -
+    D=D-M
+    M=D
+
+    @END
     0;JMP
 (END)
     @END
